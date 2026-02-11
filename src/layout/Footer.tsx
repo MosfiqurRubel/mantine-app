@@ -4,7 +4,6 @@ import {
   Grid,
   Stack,
   Text,
-  Title,
   TextInput,
   ActionIcon,
   Group,
@@ -28,33 +27,14 @@ const Footer = () => {
 
   return (
     <Box
-      //   py={isMobile ? 20 : 50}
       py={{ base: 60, md: 100, sm: 80 }}
       style={{
-        // background: 'linear-gradient(180deg, #2f3d87 100%, #0b0f1a 70%)',
         background:
           'linear-gradient(180deg, rgba(61, 85, 204, 0.7) 0%, rgba(31, 31, 31, 0.1) 100%)',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* WATERMARK */}
-      {/* <Text
-        style={{
-          position: 'absolute',
-          bottom: '-40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          fontSize: 'clamp(6rem, 20vw, 18rem)',
-          fontWeight: 800,
-          opacity: 0.05,
-          pointerEvents: 'none',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        RIZZ PHARMA
-      </Text> */}
-
       <Container size="1170" style={{ position: 'relative' }}>
         <Grid>
           <Grid.Col span={{ base: 12, md: 6 }}>
@@ -64,8 +44,10 @@ const Footer = () => {
               px={40}
               style={{
                 borderRadius: 20,
-                background: 'rgba(255,255,255,0.01)',
-                border: '2px solid rgba(255,255,255,0.15)',
+                background: isMobile ? '#1c1c1c' : 'rgba(255,255,255,0.01)',
+                border: isMobile
+                  ? '2px solid transparent'
+                  : '2px solid rgba(255,255,255,0.15)',
               }}
             >
               <Text fz={43} lh={1.3} c="white" ta={'center'}>
