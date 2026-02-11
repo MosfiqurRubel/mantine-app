@@ -23,7 +23,6 @@ const AppLayout: FC<AppLayoutProps> = ({ children }) => {
       transitionDuration={500}
       transitionTimingFunction="ease"
       px="0"
-      pb="10"
       header={{ height: isShrink ? 139 : 179 }}
       aside={{
         width: 260,
