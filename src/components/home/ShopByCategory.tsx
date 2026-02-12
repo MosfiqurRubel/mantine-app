@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import type { Category } from '@/types/types';
+import type { Category } from '@/types';
 
 import weightLoss from '@/assets/images/weight-loss.png';
 import sexualHealth from '@/assets/images/sexual-health.png';

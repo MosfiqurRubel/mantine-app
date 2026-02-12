@@ -28,6 +28,13 @@ body {
   height: 16px;
 }
 
+.product-action-icon:hover {
+  background: linear-gradient(45deg, #ff5da2 0%, #6a5cff 100%);
+}
+.product-action-icon:hover svg {
+  fill: white;
+}
+
 @media (max-width: 768px) {
   body {
     background-image: url('assets/hero-mobile.jpg'), url('assets/bg.png');

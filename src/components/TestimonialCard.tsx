@@ -1,6 +1,5 @@
-import { Avatar, Box, Card, Group, Stack, Text } from '@mantine/core';
+import { Avatar, Box, Card, Group, Rating, Stack, Text } from '@mantine/core';
 import { Icon } from '@/components/ui/Icon';
-import StarRating from '@/components/ui/StartRating';
 
 const TestimonialCard = ({ item }: { item: (typeof testimonials)[0] }) => (
   <Card
@@ -25,7 +24,16 @@ const TestimonialCard = ({ item }: { item: (typeof testimonials)[0] }) => (
       </Box>
 
       <Stack gap="53" align="center">
-        <StarRating count={item.rating} />
+        <Rating
+          value={item.rating}
+          emptySymbol={
+            <Icon name="starEmpty" color="#E6B85C" width={24} height={24} />
+          }
+          fullSymbol={
+            <Icon name="starFull" color="#E6B85C" width={24} height={24} />
+          }
+          style={{ gap: 12 }}
+        />
         <Group>
           <Avatar src={item.avatar} radius="xl" size={44} />
           <Box>

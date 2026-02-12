@@ -98,8 +98,8 @@ const FeedbackSlider = () => {
         nextControlIcon
       >
         {testimonials.map((item, index) => (
-          <Carousel.Slide color="white">
-            <TestimonialCard key={index} item={item} />
+          <Carousel.Slide color="white" key={index}>
+            <TestimonialCard item={item} />
           </Carousel.Slide>
         ))}
       </Carousel>

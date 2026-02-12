@@ -6,7 +6,7 @@ import {
   useMantineColorScheme,
   Box,
 } from '@mantine/core';
-import type { Feature } from '@/types/types';
+import type { Feature } from '@/types';
 import { Icon } from '@/components/ui/Icon';
 
 const features: Feature[] = [
