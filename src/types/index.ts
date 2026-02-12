@@ -9,6 +9,13 @@ export interface Feature {
   icon: React.ReactNode;
 }
 
+export type ProductCategory =
+  | 'all'
+  | 'weight-loss'
+  | 'beauty-hair'
+  | 'testosterone'
+  | 'sexual-health';
+
 export interface Product {
   id: string;
   title: string;
@@ -19,4 +26,5 @@ export interface Product {
     from: string;
     to: string;
   };
+  category: ProductCategory;
 }
