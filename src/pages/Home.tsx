@@ -11,6 +11,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import OnlineConvenienceSection from '@/components/home/OnlineConvenienceSection';
 import SearchSection from '@/components/ui/SearchSection';
 import ShopByCategory from '@/components/home/ShopByCategory';
+import FeaturesBanner from '@/components/home/FeaturesBanner';
 
 const Home = () => {
   const { colorScheme } = useMantineColorScheme();
@@ -77,6 +78,8 @@ const Home = () => {
       </Container>
 
       <ShopByCategory />
+
+      <FeaturesBanner />
 
       <OnlineConvenienceSection />
     </>

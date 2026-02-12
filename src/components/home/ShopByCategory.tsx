@@ -31,7 +31,7 @@ const ShopByCategory = () => {
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
 
   return (
-    <Container size="1170" px={isMobile ? 'sm' : 0} pb="160">
+    <Container size="1170" px={isMobile ? 'sm' : 0} pb={{ base: 50, sm: 120 }}>
       <Title
         order={2}
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
