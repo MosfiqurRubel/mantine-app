@@ -12,6 +12,7 @@ import OnlineConvenienceSection from '@/components/home/OnlineConvenienceSection
 import SearchSection from '@/components/ui/SearchSection';
 import ShopByCategory from '@/components/home/ShopByCategory';
 import FeaturesBanner from '@/components/home/FeaturesBanner';
+import FeedbackSlider from '@/components/home/FeedbackSlider';
 
 const Home = () => {
   const { colorScheme } = useMantineColorScheme();
@@ -82,6 +83,8 @@ const Home = () => {
       <FeaturesBanner />
 
       <OnlineConvenienceSection />
+
+      <FeedbackSlider />
     </>
   );
 };

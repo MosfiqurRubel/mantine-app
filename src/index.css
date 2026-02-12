@@ -18,6 +18,16 @@ body {
   background-size: auto;
 }
 
+.mantine-Carousel-indicators {
+  gap: 16px;
+  bottom: -50px;
+}
+
+.mantine-Carousel-indicator:where([data-orientation='horizontal']) {
+  width: 16px;
+  height: 16px;
+}
+
 @media (max-width: 768px) {
   body {
     background-image: url('assets/hero-mobile.jpg'), url('assets/bg.png');

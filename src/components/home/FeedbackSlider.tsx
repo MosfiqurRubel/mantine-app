@@ -1,0 +1,110 @@
+import { Carousel } from '@mantine/carousel';
+import { Container, Text, Title, useMantineColorScheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
+import TestimonialCard from '@/components/TestimonialCard';
+
+const testimonials = [
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+  {
+    text: `I've tried every home remedy and hair care treatment but ended up with long waits and no results. Since I've started using Hims my hair has grown, thickened, and darkened tremendously.`,
+    name: 'John Williams',
+    role: 'Lead designer',
+    avatar: '/avatar.png',
+    rating: 4,
+  },
+];
+
+const FeedbackSlider = () => {
+  const { colorScheme } = useMantineColorScheme();
+  const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
+  return (
+    <Container size="1170" px={isMobile ? 'sm' : 0} py={{ base: 50, sm: 160 }}>
+      <Title
+        order={2}
+        c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
+        tt="capitalize"
+        ta="center"
+        fz={{ base: 28, sm: 48 }}
+        lh={1.2}
+        mb={45}
+      >
+        Hear What
+        <Text
+          component="span"
+          ps={8}
+          inherit
+          variant="gradient"
+          gradient={{ from: '#c1842d', to: '#ecc974', deg: 180 }}
+        >
+          Rizz
+        </Text>
+        Patients Have To Say
+      </Title>
+
+      <Carousel
+        withIndicators
+        withControls={false}
+        slideSize={{ base: '70%', sm: '36%' }}
+        height={440}
+        //   initialSlide={3}
+        slideGap="md"
+        color="white"
+        emblaOptions={{
+          loop: true,
+          dragFree: false,
+          align: 'center',
+        }}
+        nextControlIcon
+      >
+        {testimonials.map((item, index) => (
+          <Carousel.Slide color="white">
+            <TestimonialCard key={index} item={item} />
+          </Carousel.Slide>
+        ))}
+      </Carousel>
+    </Container>
+  );
+};
+
+export default FeedbackSlider;
