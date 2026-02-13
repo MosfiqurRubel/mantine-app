@@ -18,7 +18,7 @@ body {
   background-size: auto;
 }
 
-.mantine-Carousel-indicators {
+.feedback-controls .mantine-Carousel-indicators {
   gap: 16px;
   bottom: -50px;
 }
@@ -33,6 +33,23 @@ body {
 }
 .product-action-icon:hover svg {
   fill: white;
+}
+
+.product-tab-btn:not([data-disabled]):hover {
+  border-color: transparent !important;
+  background-color: rgba(225, 192, 110, 1);
+}
+.product-tab-btn[data-active][data-active] {
+  border-color: transparent !important;
+}
+
+.product-controls-btn .mantine-Carousel-controls {
+  top: calc(100% + 50px);
+  justify-content: center;
+  gap: 32px;
+}
+.product-controls-btn .mantine-UnstyledButton-root[data-variant='filled'] {
+  border-color: #e1c06e;
 }
 
 @media (max-width: 768px) {

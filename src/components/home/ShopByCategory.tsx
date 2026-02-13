@@ -44,7 +44,7 @@ const ShopByCategory = () => {
         Shop By
         <Text
           component="span"
-          ps={8}
+          px={10}
           inherit
           variant="gradient"
           gradient={{ from: '#c1842d', to: '#ecc974', deg: 180 }}

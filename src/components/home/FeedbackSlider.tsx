@@ -72,7 +72,7 @@ const FeedbackSlider = () => {
         Hear What
         <Text
           component="span"
-          ps={8}
+          px={10}
           inherit
           variant="gradient"
           gradient={{ from: '#c1842d', to: '#ecc974', deg: 180 }}
@@ -95,6 +95,7 @@ const FeedbackSlider = () => {
           dragFree: false,
           align: 'center',
         }}
+        className="feedback-controls"
         nextControlIcon
       >
         {testimonials.map((item, index) => (
