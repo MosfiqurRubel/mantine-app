@@ -16,6 +16,14 @@ export type ProductCategory =
   | 'testosterone'
   | 'sexual-health';
 
+export interface Category {
+  CategoryId: string;
+  Category: string;
+  CategoryPhotos?: string;
+  QuizCategoryName?: string;
+  QuizCategoryImage?: string;
+}
+
 export interface Product {
   id: string;
   title: string;

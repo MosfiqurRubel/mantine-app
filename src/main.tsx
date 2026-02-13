@@ -1,6 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ColorSchemeScript, createTheme, MantineProvider } from '@mantine/core';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
 import '@mantine/core/styles.css'; // ✅ MUST HAVE (Mantine v8)
 import '@mantine/carousel/styles.css';
 import '@/index.css';
@@ -25,9 +27,11 @@ const theme = createTheme({
 
 root.render(
   <StrictMode>
-    <ColorSchemeScript />
-    <MantineProvider theme={theme} defaultColorScheme="light">
-      <App />
-    </MantineProvider>
+    <Provider store={store}>
+      <ColorSchemeScript />
+      <MantineProvider theme={theme} defaultColorScheme="light">
+        <App />
+      </MantineProvider>
+    </Provider>
   </StrictMode>,
 );

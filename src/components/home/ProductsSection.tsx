@@ -186,13 +186,13 @@ const ProductsSection = () => {
             slideSize={{ base: '100%', sm: '50%', md: '33.333%', lg: '25%' }}
             slideGap={30}
             draggable
-            feedback-controls
             nextControlIcon={
               <ActionIcon
                 radius="xl"
                 size={48}
                 variant="filled"
                 color="#E1C06E"
+                component="div"
               >
                 <Icon name="arrowRightBlack" color="var(--text-color)" />
               </ActionIcon>
@@ -203,6 +203,7 @@ const ProductsSection = () => {
                 size={48}
                 variant="filled"
                 color="#E1C06E"
+                component="div"
               >
                 <Icon name="arrowLeftBlack" color="var(--text-color)" />
               </ActionIcon>

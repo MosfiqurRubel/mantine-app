@@ -1,18 +1,27 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      '@': path.resolve(__dirname, 'src'),
     },
     // extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
+  // server: {
+  //   port: 5173, // Default Vite port
+  //   open: true, // Auto open browser on dev
+  // },
   server: {
-    port: 5173, // Default Vite port
-    open: true, // Auto open browser on dev
+    proxy: {
+      '/API': {
+        target: 'https://rizzpharma.thrivewellrx.com',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
