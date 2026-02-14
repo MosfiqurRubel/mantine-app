@@ -12,7 +12,6 @@ type IconName =
   | 'arrowNextWhite'
   | 'arrowRightBlack'
   | 'arrowLeftBlack'
-  | 'send'
   | 'iconChatRight'
   | 'securePayment'
   | 'plus'
@@ -140,28 +139,6 @@ const icons: Record<IconName, JSX.Element> = {
       <path
         d="M9.28835 20.6897L10.6431 19.1808L3.66762 11.4121L24.8276 11.4121L24.8276 9.27794L3.66761 9.27794L10.6431 1.50893L9.28835 0L0 10.345L9.28835 20.6897Z"
         fill=""
-      />
-    </svg>
-  ),
-  send: (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M20.3156 3.05293C18.2133 0.707363 2.40001 6.4532 2.41306 8.551C2.42787 10.9299 8.5886 11.6617 10.2962 12.1581C11.3231 12.4565 11.5981 12.7625 11.8349 13.8781C12.9072 18.9305 13.4456 21.4435 14.6727 21.4996C16.6286 21.5892 22.3673 5.342 20.3156 3.05293Z"
-        stroke="white"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M11.1 12.5L14.4782 9"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   ),

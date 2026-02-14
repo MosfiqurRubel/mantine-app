@@ -1,7 +1,7 @@
 import { Box, Container } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Hero from '@/components/home/Hero';
-import OnlineConvenienceSection from '@/components/home/OnlineConvenienceSection';
+import OnlineConvenient from '@/components/home/OnlineConvenient';
 import SearchSection from '@/components/ui/SearchSection';
 import ShopByCategory from '@/components/home/ShopByCategory';
 import FeaturesBanner from '@/components/home/FeaturesBanner';
@@ -27,7 +27,7 @@ const Home = () => {
 
       <ProductsSection />
 
-      <OnlineConvenienceSection />
+      <OnlineConvenient />
 
       <FeedbackSlider />
     </>

@@ -41,7 +41,8 @@ const Footer = () => {
             <Box
               maw={{ md: 413 }}
               py={35}
-              px={40}
+              px={{ base: 21, sm: 40 }}
+              mb={{ base: 30, sm: 0 }}
               style={{
                 borderRadius: 20,
                 background: isMobile ? '#1c1c1c' : 'rgba(255,255,255,0.01)',
@@ -72,7 +73,7 @@ const Footer = () => {
                     height: 60,
                     paddingInlineStart: 24,
                     backgroundColor: 'rgba(255,255,255,0.01)',
-                    border: '1px solid rgba(255,255,255,1)',
+                    border: '1px solid rgba(153, 159, 185, 1)',
                     color: 'white',
                   },
                 }}
