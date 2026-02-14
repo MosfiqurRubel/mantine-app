@@ -35,7 +35,7 @@ const ShopByCategory = () => {
       JSON.stringify(error);
     }
     content = <ErrorState error={error} />;
-  } else if (categories?.length === 0) {
+  } else if (!categories || categories?.length === 0) {
     <EmptyState message="No categories found from API." />;
   } else {
     content = categories?.map((cat) => (

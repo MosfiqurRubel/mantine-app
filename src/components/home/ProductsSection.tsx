@@ -63,7 +63,7 @@ const ProductsSection = () => {
       JSON.stringify(error);
     }
     content = <ErrorState error={error} />;
-  } else if (productCategories?.length === 0) {
+  } else if (!productCategories || productCategories?.length === 0) {
     <EmptyState message="No categories found from API." />;
   } else {
     content = (
