@@ -1,7 +1,10 @@
 import {
   ActionIcon,
+  Box,
   Container,
+  Grid,
   Group,
+  SimpleGrid,
   Tabs,
   Text,
   Title,
@@ -102,17 +105,16 @@ const ProductsSection = () => {
     <Carousel getEmblaApi={setEmbla} withControls={false} draggable>
       {productSlides.map((slideProducts, index) => (
         <Carousel.Slide key={index}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: 30,
-            }}
-          >
+          <Grid gutter="lg">
             {slideProducts.map((product) => (
-              <ProductCard key={product.ProductId} product={product} />
+              <Grid.Col
+                key={product.ProductId}
+                span={{ base: 12, sm: 6, md: 4, lg: 3 }}
+              >
+                <ProductCard product={product} />
+              </Grid.Col>
             ))}
-          </div>
+          </Grid>
         </Carousel.Slide>
       ))}
     </Carousel>
