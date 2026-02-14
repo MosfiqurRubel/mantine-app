@@ -1,16 +1,18 @@
+import DOMPurify from 'dompurify'; // Recommended for safety
 import { Alert } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
 
 const ErrorState = ({ error }: { error?: unknown }) => {
   let message = 'Something went wrong while fetching products.';
 
-  if (error && typeof error === 'object') {
-    try {
-      message = JSON.stringify(error);
-    } catch {
-      message = String(error);
-    }
-  }
+  // if (error && typeof error === 'object') {
+  //   try {
+  //     message = JSON.stringify(error);
+  //   } catch {
+  //     message = String(error);
+  //   }
+  // }
+  const sanitizedHTML = DOMPurify.sanitize(error?.data);
 
   return (
     <Alert
@@ -21,9 +23,24 @@ const ErrorState = ({ error }: { error?: unknown }) => {
       radius="md"
       mt="md"
     >
-      {message}
+      {error?.originalStatus}
+      <div dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
     </Alert>
   );
 };
 
 export default ErrorState;
+
+// import React from 'react';
+// import DOMPurify from 'dompurify'; // Recommended for safety
+
+// function MyComponent({ htmlContent }) {
+//   // Sanitize the HTML before use (see Security below)
+//   const sanitizedHTML = DOMPurify.sanitize(htmlContent);
+
+//   return (
+//     <div dangerouslySetInnerHTML={{ __html: sanitizedHTML }} />
+//   );
+// }
+
+// export default MyComponent;

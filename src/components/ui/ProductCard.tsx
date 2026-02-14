@@ -1,9 +1,12 @@
 import { Card, Image, Text, Group, ActionIcon, Center } from '@mantine/core';
+import type { Product } from '@/types';
+import { getBadges } from '@/utils/badges';
 import { Icon } from '@/components/ui/Icon';
 import ProductBadge from '@/components/ui/ProductBadge';
-import type { Product } from '@/types';
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const badges = getBadges(product);
+
   return (
     <Card
       w={{ base: '100%', sm: 270 }}
@@ -15,14 +18,14 @@ const ProductCard = ({ product }: { product: Product }) => {
       bg="rgba(49, 65, 140, 0.3)"
       style={{ overflow: 'hidden' }}
     >
-      {/* Badge: Out of Stock হলে দেখাবে */}
-      {product.IsOutOfStock && (
+      {badges.map((badge) => (
         <ProductBadge
-          label="Out of Stock"
-          gradientFrom="#A75356"
-          gradientTo="#D78C6C"
+          key={badge.key}
+          label={badge.label}
+          gradientFrom={badge.gradientFrom}
+          gradientTo={badge.gradientTo}
         />
-      )}
+      ))}
 
       <Group h={177} gap={24} ps={30} pe="xs" pt="xs" pb="lg">
         <Center>
@@ -63,12 +66,24 @@ const ProductCard = ({ product }: { product: Product }) => {
           w={86}
           size={42}
           radius={0}
+          disabled={product.IsOutOfStock}
+          fz="xs"
+          tt="uppercase"
+          px={10}
+          ta="center"
           variant="gradient"
           gradient={{ from: '#f5c16c', to: '#e09b2d' }}
           className="product-action-icon"
-          style={{ borderBottomRightRadius: 12 }}
+          style={{
+            borderBottomRightRadius: 12,
+            color: 'var(--text-body-color)',
+          }}
         >
-          <Icon name="shoppingCart" color="var(--text-body-color)" />
+          {product.IsOutOfStock ? (
+            'Out of Stock'
+          ) : (
+            <Icon name="shoppingCart" color="var(--text-body-color)" />
+          )}
         </ActionIcon>
       </Group>
     </Card>

@@ -1,3 +1,10 @@
+export type BadgeType = {
+  key: string;
+  label: string;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
 export interface Feature {
   title: string;
   icon: React.ReactNode;
@@ -42,20 +49,3 @@ export interface ProductCategory {
   Category: string;
   Products: Product[];
 }
-
-// export type ProductCategoryKey =
-//   | 'all'
-//   | 'weight-loss'
-//   | 'beauty-hair'
-//   | 'testosterone'
-//   | 'sexual-health';
-
-// export interface ProductCardProps {
-//   ProductId: string;
-//   Name: string;
-//   CoverPhoto?: string;
-//   Price: string;
-//   IsOutOfStock?: string;
-//   cartGradient?: { from: string; to: string };
-//   Category: ProductCategoryKey | string;
-// }

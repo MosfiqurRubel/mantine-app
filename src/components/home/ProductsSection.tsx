@@ -64,6 +64,8 @@ const ProductsSection = () => {
   useEffect(() => {
     if (!catEmbla) return;
 
+    embla.scrollTo(0);
+
     const updateButtons = () => {
       setCanScrollPrev(catEmbla.canScrollPrev());
       setCanScrollNext(catEmbla.canScrollNext());

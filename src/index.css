@@ -28,6 +28,18 @@ body {
   height: 16px;
 }
 
+.product-action-icon:where(
+  :disabled:not([data-loading]),
+  [data-disabled]:not([data-loading])
+) {
+  background: linear-gradient(45deg, #f5c16c 0%, #e09b2d 100%);
+}
+
+.product-action-icon:disabled,
+.product-action-icon[data-disabled] {
+  background: linear-gradient(45deg, #f5c16c 0%, #e09b2d 100%) !important;
+}
+
 .product-action-icon:hover {
   background: linear-gradient(45deg, #ff5da2 0%, #6a5cff 100%);
 }
