@@ -1,9 +1,6 @@
 import {
   ActionIcon,
-  Button,
   Container,
-  Flex,
-  Group,
   Tabs,
   Text,
   Title,
@@ -11,112 +8,45 @@ import {
 } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useMemo, useState } from 'react';
-import type { Product, ProductCategory } from '@/types';
+import type { Product } from '@/types';
 import ProductCard from '@/components/ui/ProductCard';
-
-import retatrutideImg from '@/assets/images/product/retatrutide.png';
-import glowImg from '@/assets/images/product/glow.png';
-import compoundedImg from '@/assets/images/product/compounded.png';
-import ipamorelinImg from '@/assets/images/product/ipamorelin.png';
-import sermorelinImg from '@/assets/images/product/sermorelin.png';
-import oxytocinImg from '@/assets/images/product/oxytocin.png';
-import aodLyophoIgg from '@/assets/images/product/aodLyopho.png';
-import nadImg from '@/assets/images/product/nad.png';
 import { Icon } from '@/components/ui/Icon';
-
-const products: Product[] = [
-  {
-    id: '1',
-    title: 'Retatrutide',
-    image: retatrutideImg,
-    price: '$39.99/per month',
-    badge: 'Research use only',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'weight-loss',
-  },
-  {
-    id: '2',
-    title: 'Lyophilized Glow (GHK-CU/ BPC-157/ TB-500)',
-    image: glowImg,
-    price: '$39.99/per month',
-    badge: 'Research use only',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'beauty-hair',
-  },
-  {
-    id: '3',
-    title: 'Compounded Sermorelin 15mg',
-    image: sermorelinImg,
-    price: '$39.99/per month',
-    badge: 'Recurring Plan',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'testosterone',
-  },
-  {
-    id: '4',
-    title: '2X CJC / Ipamorelin',
-    image: ipamorelinImg,
-    price: '$39.99/per month',
-    badge: 'Research use only',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'sexual-health',
-  },
-  {
-    id: '5',
-    title: 'Lyopholized Oxytocin',
-    image: oxytocinImg,
-    price: '$39.99/per month',
-    badge: 'Recurring Plan',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'sexual-health',
-  },
-  {
-    id: '6',
-    title: 'Compounded NAD+ 1000 mg',
-    image: nadImg,
-    price: '$39.99/per month',
-    badge: 'Research use only',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'sexual-health',
-  },
-  {
-    id: '7',
-    title: 'Lyopholized AOD 9604 5 mg',
-    image: aodLyophoIgg,
-    price: '$39.99/per month',
-    badge: 'Research use only',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'testosterone',
-  },
-  {
-    id: '8',
-    title: 'Compounded Sermorelin 15 mg',
-    image: compoundedImg,
-    price: '$39.99/per month',
-    badge: 'Recurring Plan',
-    cartGradient: { from: '#f5c16c', to: '#e09b2d' },
-    category: 'testosterone',
-  },
-];
-
-const categories = [
-  { value: 'all', label: 'All' },
-  { value: 'best', label: 'Best Selling Products' },
-  { value: 'weight-loss', label: 'Weight Loss' },
-  { value: 'sexual-health', label: 'Sexual Health' },
-  { value: 'brain-health', label: 'Brain Health' },
-  { value: 'testosterone', label: 'Testosterone/HRT' },
-  { value: 'athletic-performance', label: 'Athletic Performance' },
-  { value: 'beauty-hair', label: 'Beauty And Hair Loss' },
-] as const;
+import { useGetLandingProductsQuery } from '@/features/api/apiSlice';
 
 const ProductsSection = () => {
   const { colorScheme } = useMantineColorScheme();
-  const [activeTab, setActiveTab] = useState<ProductCategory | 'best'>('all');
+  const {
+    data: productCategories,
+    isLoading,
+    isError,
+  } = useGetLandingProductsQuery();
+  const [activeTab, setActiveTab] = useState<string>('all');
+
+  // Flatten products
+  const allProducts: Product[] = useMemo(() => {
+    if (!productCategories) return [];
+    return productCategories.flatMap((cat) =>
+      cat.Products.map((p) => ({
+        ...p,
+        Category: cat.Category.toLowerCase().replace(/\s+/g, '-'),
+      })),
+    );
+  }, [productCategories]);
+
   const filteredProducts = useMemo(() => {
-    if (activeTab === 'all' || activeTab === 'best') return products;
-    return products.filter((p) => p.category === activeTab);
-  }, [activeTab]);
+    if (activeTab === 'all') return allProducts;
+    return allProducts.filter((p) => p.Category === activeTab);
+  }, [activeTab, allProducts]);
+
+  const uniqueCategories = productCategories?.filter(
+    (cat, index, self) =>
+      index === self.findIndex((c) => c.CategoryId === cat.CategoryId),
+  );
+
+  const uniqueProducts = filteredProducts.filter(
+    (p, index, self) =>
+      index === self.findIndex((q) => q.ProductId === p.ProductId),
+  );
 
   return (
     <Container size="1202" py={{ base: 50, sm: 160 }}>
@@ -144,17 +74,35 @@ const ProductsSection = () => {
 
       <Tabs
         value={activeTab}
-        onChange={(value) => setActiveTab(value as typeof activeTab)}
+        onChange={(value) => setActiveTab(value!)}
         variant="pills"
         mb={50}
         radius="xl"
       >
         <Tabs.List justify="center" pb={20}>
-          {categories.map((cat) => (
+          {/* Always show "All" */}
+          <Tabs.Tab
+            value="all"
+            color="rgba(225, 192, 110, 1)"
+            fz="md"
+            fw={400}
+            style={{
+              color: '#fff',
+              border: '1px solid #fff',
+              paddingInline: 40,
+              paddingBlock: 23,
+            }}
+            className="product-tab-btn"
+          >
+            All
+          </Tabs.Tab>
+
+          {/* Dynamic categories from API */}
+          {uniqueCategories?.map((cat) => (
             <Tabs.Tab
-              key={cat.value}
-              value={cat.value}
-              color="rgba(225, 192, 110, 1)"
+              key={cat.CategoryId}
+              value={cat.Category.toLowerCase().replace(/\s+/g, '-')}
+              className="product-tab-btn"
               fz="md"
               fw={400}
               style={{
@@ -163,25 +111,13 @@ const ProductsSection = () => {
                 paddingInline: 40,
                 paddingBlock: 23,
               }}
-              className="product-tab-btn"
             >
-              {cat.label}
+              {cat.Category}
             </Tabs.Tab>
           ))}
         </Tabs.List>
 
         <Tabs.Panel value={activeTab} pt={66}>
-          {/* <Flex
-            justify="center"
-            wrap="wrap"
-            columnGap="30"
-            rowGap={{ base: 24, sm: 40 }}
-          >
-            {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </Flex> */}
-
           <Carousel
             slideSize={{ base: '100%', sm: '50%', md: '33.333%', lg: '25%' }}
             slideGap={30}
@@ -210,8 +146,8 @@ const ProductsSection = () => {
             }
             className="product-controls-btn"
           >
-            {filteredProducts.map((product) => (
-              <Carousel.Slide key={product.id}>
+            {uniqueProducts.map((product) => (
+              <Carousel.Slide key={product.ProductId}>
                 <ProductCard product={product} />
               </Carousel.Slide>
             ))}

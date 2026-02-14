@@ -8,31 +8,11 @@ import {
   Grid,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import type { Category } from '@/types';
-
-import weightLoss from '@/assets/images/weight-loss.png';
-import sexualHealth from '@/assets/images/sexual-health.png';
-import brainHealth from '@/assets/images/brain-health.png';
-import testosterone from '@/assets/images/testosterone.png';
-import athletic from '@/assets/images/athletic.png';
-import beauty from '@/assets/images/beauty.png';
 import { useGetLandingCategoriesQuery } from '@/features/api/apiSlice';
-
-// const categories: Category[] = [
-// const categories = [
-//   { title: 'Weight Loss', image: weightLoss },
-//   { title: 'Sexual Health', image: sexualHealth },
-//   { title: 'Brain Health', image: brainHealth },
-//   { title: 'Testosterone HRT', image: testosterone },
-//   { title: 'Athletic Performance', image: athletic },
-//   { title: 'Beauty and Hair Loss', image: beauty },
-// ];
 
 const ShopByCategory = () => {
   const { colorScheme } = useMantineColorScheme();
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
-
-  const BASE_URL = 'https://rizzpharma.thrivewellrx.com';
 
   const {
     data: categories,
@@ -97,7 +77,7 @@ const ShopByCategory = () => {
         >
           <Card.Section>
             <Image
-              src={BASE_URL + cat.CategoryPhotos}
+              src={import.meta.env.VITE_API_URL + cat.CategoryPhotos}
               alt={cat.Category}
               radius={24}
               h={{ base: 202, sm: 'auto' }}
@@ -146,9 +126,6 @@ const ShopByCategory = () => {
 
       <Grid justify="flex-start" align="flex-start" gutter="30">
         {content}
-        {/* {categories?.map((cat) => (
-          
-        ))} */}
       </Grid>
     </Container>
   );

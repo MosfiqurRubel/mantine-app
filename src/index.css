@@ -35,6 +35,7 @@ body {
   fill: white;
 }
 
+.product-tab-btn[data-active][data-active],
 .product-tab-btn:not([data-disabled]):hover {
   border-color: transparent !important;
   background-color: rgba(225, 192, 110, 1);

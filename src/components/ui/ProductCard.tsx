@@ -1,13 +1,9 @@
-import type { Product } from '@/types';
 import { Card, Image, Text, Group, ActionIcon, Center } from '@mantine/core';
 import { Icon } from '@/components/ui/Icon';
 import ProductBadge from '@/components/ui/ProductBadge';
+import type { Product } from '@/types';
 
-interface ProductCardProps {
-  product: Product;
-}
-
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <Card
       w={{ base: '100%', sm: 270 }}
@@ -19,17 +15,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
       bg="rgba(49, 65, 140, 0.3)"
       style={{ overflow: 'hidden' }}
     >
-      {product.badge && (
+      {/* Badge: Out of Stock হলে দেখাবে */}
+      {product.IsOutOfStock && (
         <ProductBadge
-          label={`${product.badge}`}
-          gradientFrom={`${product.badge === 'Recurring Plan' ? 'rgba(108, 34, 29, 0.3)' : '#A75356'}`}
-          gradientTo={`${product.badge === 'Recurring Plan' ? 'rgba(149, 65, 57, 0.3)' : '#D78C6C'}`}
+          label="Out of Stock"
+          gradientFrom="#A75356"
+          gradientTo="#D78C6C"
         />
       )}
 
       <Group h={177} gap={24} ps={30} pe="xs" pt="xs" pb="lg">
         <Center>
-          <Image src={product.image} alt={product.title} w={70} fit="contain" />
+          <Image
+            src={import.meta.env.VITE_API_URL + product.CoverPhoto}
+            alt={product.Name}
+            w={70}
+            fit="contain"
+          />
         </Center>
 
         <Text
@@ -43,7 +45,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           variant="gradient"
           gradient={{ from: '#C1842D', to: '#ECC974', deg: 180 }}
         >
-          {product.title}
+          {product.Name}
         </Text>
       </Group>
 
@@ -54,7 +56,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         gap="xs"
       >
         <Text maw={150} c="white" fz="xs" lineClamp={2}>
-          {product.price}
+          ${product.Price}
         </Text>
 
         <ActionIcon
@@ -62,11 +64,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           size={42}
           radius={0}
           variant="gradient"
-          gradient={product.cartGradient}
+          gradient={{ from: '#f5c16c', to: '#e09b2d' }}
           className="product-action-icon"
-          style={{
-            borderBottomRightRadius: 12,
-          }}
+          style={{ borderBottomRightRadius: 12 }}
         >
           <Icon name="shoppingCart" color="var(--text-body-color)" />
         </ActionIcon>

@@ -1,20 +1,7 @@
-export interface Category {
-  id?: string;
-  title: string;
-  image: string;
-}
-
 export interface Feature {
   title: string;
   icon: React.ReactNode;
 }
-
-export type ProductCategory =
-  | 'all'
-  | 'weight-loss'
-  | 'beauty-hair'
-  | 'testosterone'
-  | 'sexual-health';
 
 export interface Category {
   CategoryId: string;
@@ -25,14 +12,50 @@ export interface Category {
 }
 
 export interface Product {
-  id: string;
-  title: string;
-  image: string;
-  price: string;
-  badge?: string; // e.g. "Research use only"
-  cartGradient: {
-    from: string;
-    to: string;
-  };
-  category: ProductCategory;
+  ProductId: number;
+  IsPrescriptionGenerationRequired: boolean;
+  IsAcknowledgmentRequired: boolean;
+  Name: string;
+  Price: number;
+  LowestPrice?: number;
+  ConsultancyFee?: number;
+  MedicineType?: string;
+  CoverPhoto?: string;
+  PreviewUrl?: string;
+  IntakeFormScreenUrl?: string | null;
+  CategoryId: number;
+  Category: string;
+  ShippingCharge?: number | null;
+  LabCharge?: number | null;
+  IsCompounded: boolean;
+  IsPerMonth: boolean;
+  IsStartWithLowest: boolean;
+  IsOutOfStock: boolean;
+  ContentAlignment?: string;
+  TotalDoes?: number;
+  Doses?: string;
+  AboutTheProduct?: string;
+  HealthBenefits?: string;
 }
+export interface ProductCategory {
+  CategoryId: number;
+  Category: string;
+  Products: Product[];
+}
+
+// export type ProductCategoryKey =
+//   | 'all'
+//   | 'weight-loss'
+//   | 'beauty-hair'
+//   | 'testosterone'
+//   | 'sexual-health';
+
+// export interface ProductCardProps {
+//   ProductId: string;
+//   Name: string;
+//   CoverPhoto?: string;
+//   Price: string;
+//   IsOutOfStock?: string;
+//   cartGradient?: { from: string; to: string };
+//   Category: ProductCategoryKey | string;
+// }
