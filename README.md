@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+# 🧩 Product Landing UI – React + Mantine v8
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive product landing UI built with **React**, **Vite**, and **Mantine UI v8**, featuring category-based navigation, carousel sliders, and real API integration.
 
-Currently, two official plugins are available:
+This project was developed as part of a frontend assignment focusing on:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive UI implementation
+- Clean component architecture
+- API-driven rendering
+- Professional code organization
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Category tabs with horizontal carousel (drag + next / prev)
+- Products displayed in **2-row carousel slides (8 items per slide)**
+- Fully responsive layout (mobile, tablet, desktop)
+- Real backend API integration
+- Reusable UI components
+- Clean utility-based badge system
+- Mantine v8 (latest) only — no custom CSS hacks
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **React 19**
+- **Vite 7**
+- **TypeScript**
+- **Mantine UI v8**
+- **Mantine Carousel (Embla)**
+- **Redux Toolkit (RTK Query)**
+- **React Router DOM v7**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/)
+- [Git](https://git-scm.com/)
+
+## 📦 Installation & Setup
+
+### 1️⃣ Clone the repository & Run
+
+```bash
+git clone <your-repository-url>
+cd mantine-app
+npm install
+npm run dev       # Start development server
+npm run build     # Type-check and build for production
+npm run preview   # Preview production build
+npm run lint      # Run ESLint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Your app will be available at: [http://localhost:5173](http://localhost:5173)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔗 Useful Links
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [React Documentation](https://react.dev/)
+- [Redux Toolkit RTK Query](https://redux.js.org/)
+- [Mantine UI](https://mantine.dev/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Vite](https://vitejs.dev/)
+- [Netlify](https://netlify.com/)
+
+## 📁 Project Structure
+
+src/
+
+- ├── assets/ # Static images & assets
+- ├── components/
+- │ └── ui/
+- │ ├── ProductCard.tsx
+- │ ├── ProductBadge.tsx
+- │ ├── Icon.tsx
+- │ ├── LoadingState.tsx
+- │ └── ErrorState.tsx
+- │ └── home/
+- │ └── ProductsSection.tsx
+- │ └── ShopByCategory.tsx
+- ├── app/
+- │ └── store.ts # Store
+- ├── features/
+- │ └── api/
+- │ └── apiSlice.ts # RTK Query API layer
+- ├── pages/
+- │ └── Home.tsx
+- ├── utils/
+- │ └── badges.ts # Badge resolver helper
+- ├── types/
+- │ └── index.ts # Shared TypeScript types
+- ├── App.tsx
+- └── main.tsx
