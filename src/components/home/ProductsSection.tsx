@@ -8,6 +8,7 @@ import {
   Title,
   useMantineColorScheme,
 } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import { Carousel } from '@mantine/carousel';
 import { useEffect, useMemo, useState } from 'react';
 import { useGetLandingProductsQuery } from '@/features/api/apiSlice';
@@ -20,6 +21,7 @@ import EmptyState from '@/components/ui/EmptyState';
 
 const ProductsSection = () => {
   const { colorScheme } = useMantineColorScheme();
+  const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
   const {
     data: productCategories,
     isLoading,
@@ -235,32 +237,38 @@ const ProductsSection = () => {
         <Tabs.Panel value={activeTab} pt={60}>
           {productCarousel}
 
-          <Group justify="center" mt={40} gap={24}>
-            <ActionIcon
-              radius="xl"
-              size={48}
-              color="#E1C06E"
-              onClick={() => embla?.scrollPrev()}
-            >
-              <Icon name="arrowLeftBlack" color="var(--text-color)" />
-            </ActionIcon>
+          {!isMobile && (
+            <Group justify="center" mt={40} gap={24}>
+              <ActionIcon
+                radius="xl"
+                size={48}
+                color="#E1C06E"
+                onClick={() => embla?.scrollPrev()}
+              >
+                <Icon name="arrowLeftBlack" color="var(--text-color)" />
+              </ActionIcon>
 
-            <ActionIcon
-              radius="xl"
-              size={48}
-              color="#E1C06E"
-              onClick={() => embla?.scrollNext()}
-            >
-              <Icon name="arrowRightBlack" color="var(--text-color)" />
-            </ActionIcon>
-          </Group>
+              <ActionIcon
+                radius="xl"
+                size={48}
+                color="#E1C06E"
+                onClick={() => embla?.scrollNext()}
+              >
+                <Icon name="arrowRightBlack" color="var(--text-color)" />
+              </ActionIcon>
+            </Group>
+          )}
         </Tabs.Panel>
       </Tabs>
     );
   }
 
   return (
-    <Container size="1202" py={{ base: 50, sm: 160 }}>
+    <Container
+      size="1202"
+      pt={{ base: 50, sm: 160 }}
+      pb={{ base: 30, sm: 160 }}
+    >
       <Title
         order={2}
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
@@ -280,7 +288,9 @@ const ProductsSection = () => {
         >
           Unique
         </Text>
-        Health Goals
+        <Text inherit display={{ base: 'block', sm: 'inline' }}>
+          Health Goals
+        </Text>
       </Title>
 
       {content}
