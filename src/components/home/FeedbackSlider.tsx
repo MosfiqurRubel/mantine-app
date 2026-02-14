@@ -59,7 +59,7 @@ const FeedbackSlider = () => {
   const { colorScheme } = useMantineColorScheme();
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
   return (
-    <Container size="1170" px={isMobile ? 'sm' : 0} py={{ base: 50, sm: 160 }}>
+    <Container size="lg" px={isMobile ? 'sm' : 0} py={{ base: 50, sm: 160 }}>
       <Title
         order={2}
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
@@ -83,17 +83,16 @@ const FeedbackSlider = () => {
       </Title>
 
       <Carousel
-        withIndicators
+        withIndicators={isMobile ? false : true}
         withControls={false}
-        slideSize={{ base: '70%', sm: '36%' }}
-        height={440}
-        //   initialSlide={3}
-        slideGap="md"
+        slideSize={{ base: '80%', sm: '36%' }}
+        height={isMobile ? 334 : 440}
+        slideGap={{ base: 'sm', sm: 'md' }}
         color="white"
         emblaOptions={{
           loop: true,
           dragFree: false,
-          align: 'center',
+          align: isMobile ? 'start' : 'center',
         }}
         className="feedback-controls"
         nextControlIcon
