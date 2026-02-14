@@ -19,6 +19,7 @@ const ProductsSection = () => {
     data: productCategories,
     isLoading,
     isError,
+    error,
   } = useGetLandingProductsQuery();
   const [activeTab, setActiveTab] = useState<string>('all');
 
@@ -48,30 +49,46 @@ const ProductsSection = () => {
       index === self.findIndex((q) => q.ProductId === p.ProductId),
   );
 
-  return (
-    <Container size="1202" py={{ base: 50, sm: 160 }}>
-      <Title
-        order={2}
-        c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
-        tt="capitalize"
-        ta="center"
-        fz={{ base: 28, sm: 48 }}
-        lh={1.2}
-        mb={45}
-      >
-        Solutions for Your
-        <Text
-          component="span"
-          px={10}
-          inherit
-          variant="gradient"
-          gradient={{ from: '#c1842d', to: '#ecc974', deg: 180 }}
-        >
-          Unique
-        </Text>
-        Health Goals
-      </Title>
+  // decide what to render
+  let content = null;
 
+  if (isLoading) {
+    content = (
+      <Text
+        size="xl"
+        fw={900}
+        variant="gradient"
+        gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
+      >
+        Loading...
+      </Text>
+    );
+  } else if (isError) {
+    console.log('API Error', error);
+    {
+      JSON.stringify(error);
+    }
+    content = (
+      <Text
+        size="xl"
+        fw={900}
+        variant="gradient"
+        gradient={{ from: 'red', to: 'yellow', deg: 90 }}
+      >
+        There was an error
+      </Text>
+    );
+  } else if (productCategories?.length === 0) {
+    <Text
+      size="xl"
+      fw={900}
+      variant="gradient"
+      gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
+    >
+      No categories found!
+    </Text>;
+  } else {
+    content = (
       <Tabs
         value={activeTab}
         onChange={(value) => setActiveTab(value!)}
@@ -83,7 +100,7 @@ const ProductsSection = () => {
           {/* Always show "All" */}
           <Tabs.Tab
             value="all"
-            color="rgba(225, 192, 110, 1)"
+            className="product-tab-btn"
             fz="md"
             fw={400}
             style={{
@@ -92,11 +109,9 @@ const ProductsSection = () => {
               paddingInline: 40,
               paddingBlock: 23,
             }}
-            className="product-tab-btn"
           >
             All
           </Tabs.Tab>
-
           {/* Dynamic categories from API */}
           {uniqueCategories?.map((cat) => (
             <Tabs.Tab
@@ -116,7 +131,6 @@ const ProductsSection = () => {
             </Tabs.Tab>
           ))}
         </Tabs.List>
-
         <Tabs.Panel value={activeTab} pt={66}>
           <Carousel
             slideSize={{ base: '100%', sm: '50%', md: '33.333%', lg: '25%' }}
@@ -154,6 +168,34 @@ const ProductsSection = () => {
           </Carousel>
         </Tabs.Panel>
       </Tabs>
+    );
+  }
+
+  return (
+    <Container size="1202" py={{ base: 50, sm: 160 }}>
+      <Title
+        order={2}
+        c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
+        tt="capitalize"
+        ta="center"
+        fz={{ base: 28, sm: 48 }}
+        lh={1.2}
+        mb={45}
+      >
+        Solutions for Your
+        <Text
+          component="span"
+          px={10}
+          inherit
+          variant="gradient"
+          gradient={{ from: '#c1842d', to: '#ecc974', deg: 180 }}
+        >
+          Unique
+        </Text>
+        Health Goals
+      </Title>
+
+      {content}
     </Container>
   );
 };
