@@ -35,6 +35,20 @@ body {
   fill: white;
 }
 
+.product-tab-btn {
+  white-space: nowrap;
+  padding: 18px 36px;
+  border-radius: 999px;
+  border: 1px solid #fff;
+  color: white;
+}
+
+.mantine-Tabs-tab[data-active] {
+  background: #e1c06e;
+  color: #000;
+  border-color: transparent;
+}
+
 .product-tab-btn[data-active][data-active],
 .product-tab-btn:not([data-disabled]):hover {
   border-color: transparent !important;

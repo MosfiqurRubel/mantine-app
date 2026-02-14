@@ -9,6 +9,7 @@ type IconName =
   | 'instagramSM'
   | 'instagramMD'
   | 'phone'
+  | 'arrowNextWhite'
   | 'arrowRightBlack'
   | 'arrowLeftBlack'
   | 'send'
@@ -109,7 +110,23 @@ const icons: Record<IconName, JSX.Element> = {
       </defs>
     </svg>
   ),
-  // অন্যান্য icon গুলো একইভাবে পুরো <svg> দিয়ে যোগ করো
+  arrowNextWhite: (
+    <svg
+      width="22"
+      height="14"
+      viewBox="0 0 22 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M20.75 7L0.75 7M20.75 7C20.75 5.24943 15.7642 1.97882 14.5 0.75M20.75 7C20.75 8.75057 15.7642 12.0212 14.5 13.25"
+        stroke="white"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
   arrowRightBlack: (
     <svg width="25" height="21" viewBox="0 0 25 21" fill="none">
       <path
