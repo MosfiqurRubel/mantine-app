@@ -8,10 +8,13 @@ import {
 } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
 import { useMemo, useState } from 'react';
-import type { Product } from '@/types';
-import ProductCard from '@/components/ui/ProductCard';
-import { Icon } from '@/components/ui/Icon';
 import { useGetLandingProductsQuery } from '@/features/api/apiSlice';
+import type { Product } from '@/types';
+import { Icon } from '@/components/ui/Icon';
+import ProductCard from '@/components/ui/ProductCard';
+import LoadingState from '@/components/ui/LoadingState';
+import ErrorState from '@/components/ui/ErrorState';
+import EmptyState from '@/components/ui/EmptyState';
 
 const ProductsSection = () => {
   const { colorScheme } = useMantineColorScheme();
@@ -53,40 +56,15 @@ const ProductsSection = () => {
   let content = null;
 
   if (isLoading) {
-    content = (
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
-      >
-        Loading...
-      </Text>
-    );
+    content = <LoadingState message="Fetching products from server..." />;
   } else if (isError) {
     console.log('API Error', error);
     {
       JSON.stringify(error);
     }
-    content = (
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: 'red', to: 'yellow', deg: 90 }}
-      >
-        There was an error
-      </Text>
-    );
+    content = <ErrorState error={error} />;
   } else if (productCategories?.length === 0) {
-    <Text
-      size="xl"
-      fw={900}
-      variant="gradient"
-      gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
-    >
-      No categories found!
-    </Text>;
+    <EmptyState message="No categories found from API." />;
   } else {
     content = (
       <Tabs

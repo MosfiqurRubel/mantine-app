@@ -9,6 +9,9 @@ import {
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import { useGetLandingCategoriesQuery } from '@/features/api/apiSlice';
+import LoadingState from '@/components/ui/LoadingState';
+import ErrorState from '@/components/ui/ErrorState';
+import EmptyState from '@/components/ui/EmptyState';
 
 const ShopByCategory = () => {
   const { colorScheme } = useMantineColorScheme();
@@ -25,40 +28,15 @@ const ShopByCategory = () => {
   let content = null;
 
   if (isLoading) {
-    content = (
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
-      >
-        Loading...
-      </Text>
-    );
+    content = <LoadingState message="Fetching categories from server..." />;
   } else if (isError) {
     console.log('API Error', error);
     {
       JSON.stringify(error);
     }
-    content = (
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-        gradient={{ from: 'red', to: 'yellow', deg: 90 }}
-      >
-        There was an error
-      </Text>
-    );
+    content = <ErrorState error={error} />;
   } else if (categories?.length === 0) {
-    <Text
-      size="xl"
-      fw={900}
-      variant="gradient"
-      gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
-    >
-      No categories found!
-    </Text>;
+    <EmptyState message="No categories found from API." />;
   } else {
     content = categories?.map((cat) => (
       <Grid.Col key={cat.CategoryId} span={{ base: 6, sm: 4 }}>
