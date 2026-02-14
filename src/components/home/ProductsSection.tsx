@@ -1,10 +1,8 @@
 import {
   ActionIcon,
-  Box,
   Container,
   Grid,
   Group,
-  SimpleGrid,
   Tabs,
   Text,
   Title,
@@ -126,10 +124,10 @@ const ProductsSection = () => {
   if (isLoading) {
     content = <LoadingState message="Fetching products from server..." />;
   } else if (isError) {
-    console.log('API Error', error);
-    {
-      JSON.stringify(error);
-    }
+    // console.log('API Error', error);
+    // {
+    //   JSON.stringify(error);
+    // }
     content = <ErrorState error={error} />;
   } else if (!productCategories || productCategories?.length === 0) {
     <EmptyState message="No categories found from API." />;
