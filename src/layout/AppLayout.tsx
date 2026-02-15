@@ -1,10 +1,9 @@
-import { AppShell, useMantineColorScheme } from '@mantine/core';
+import { AppShell, useMantineTheme } from '@mantine/core';
 import type { FC, ReactNode } from 'react';
 import Header from '@/layout/Header';
-import { useDisclosure, useWindowScroll } from '@mantine/hooks';
+import { useDisclosure, useMediaQuery, useWindowScroll } from '@mantine/hooks';
 import Sidebar from '@/layout/Sidebar';
 import Footer from '@/layout/Footer';
-// import heroImg from '@/assets/Hero.png';
 
 type AppLayoutProps = {
   children: ReactNode;
@@ -13,19 +12,24 @@ type AppLayoutProps = {
 const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
   const [scroll] = useWindowScroll();
+  const theme = useMantineTheme();
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
   const isScrolled = scroll.y > 20;
-  const isShrink = scroll.y > 80;
+  const isShrink = scroll.y > 30;
+
+  const isDesk = !isiPad ? 179 : 92;
+  const isMob = isiPad ? 92 : 179;
 
   return (
     <AppShell
       transitionDuration={500}
       transitionTimingFunction="ease"
       px="0"
-      header={{ height: isShrink ? 179 : 139 }}
+      header={{ height: isShrink ? isDesk : isMob }}
       aside={{
         width: 260,
-        breakpoint: 'sm',
+        breakpoint: 'md',
         collapsed: { mobile: !mobileOpened, desktop: !mobileOpened },
       }}
       className="dd-app"
@@ -49,7 +53,7 @@ const AppLayout: FC<AppLayoutProps> = ({ children }) => {
           shrink={isShrink}
         />
       </AppShell.Header>
-      <AppShell.Aside hiddenFrom="sm" p="sm" withBorder={false}>
+      <AppShell.Aside hiddenFrom="md" p="md" withBorder={false}>
         <Sidebar collapsed={!mobileOpened} />
       </AppShell.Aside>
       <AppShell.Main pt={53}>{children}</AppShell.Main>

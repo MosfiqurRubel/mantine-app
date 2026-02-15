@@ -46,7 +46,7 @@ const Header = ({
         h="100%"
         justify="space-between"
         align="flex-start"
-        pt={48}
+        pt={{ base: 30, md: 48 }}
         pb={10}
       >
         <Link to="/">

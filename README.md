@@ -45,7 +45,7 @@ This project was developed as part of a frontend assignment focusing on:
 ### 1️⃣ Clone the repository & Run
 
 ```bash
-git clone <your-repository-url>
+git clone git@github.com:MosfiqurRubel/mantine-app.git
 cd mantine-app
 npm install
 npm run dev       # Start development server
