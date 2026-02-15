@@ -7,6 +7,7 @@ import {
   ActionIcon,
   Stack,
   Burger,
+  useMantineTheme,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import {
@@ -35,7 +36,8 @@ const Header = ({
   // toggleColorScheme,
   shrink,
 }: HeaderProps) => {
-  const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
+  const theme = useMantineTheme();
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.lg})`);
 
   return (
     <Container size="lg" h="100%">
@@ -51,8 +53,8 @@ const Header = ({
           />
         </Link>
 
-        <Stack align={isMobile ? 'flex-start' : 'flex-end'} gap="24">
-          {!isMobile && (
+        <Stack align={isiPad ? 'flex-start' : 'flex-end'} gap="24">
+          {!isiPad && (
             <Group gap={50}>
               <Group gap={40}>
                 <Anchor component={NavLink} to="/" c="white">
@@ -108,9 +110,9 @@ const Header = ({
             </Group>
           )}
 
-          <Group gap={isMobile ? 10 : 30}>
+          <Group gap={isiPad ? 10 : 30}>
             <Button
-              visibleFrom="sm"
+              visibleFrom="md"
               variant="gradient"
               radius="xl"
               size="sm"
@@ -158,16 +160,16 @@ const Header = ({
               h="auto"
               ms={{ base: 0, sm: -2 }}
             >
-              <IconShoppingCart size={isMobile ? 28 : 34} />
+              <IconShoppingCart size={isiPad ? 28 : 34} />
             </ActionIcon>
-
-            <Burger
-              opened={mobileOpened}
-              onClick={toggleMobile}
-              hiddenFrom="sm"
-              color="white"
-              size={24}
-            />
+            {isiPad && (
+              <Burger
+                opened={mobileOpened}
+                onClick={toggleMobile}
+                color="white"
+                size={24}
+              />
+            )}
 
             {/* <ActionIcon
               variant="outline"

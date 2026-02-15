@@ -13,7 +13,7 @@ const Home = () => {
       <Container size="lg" pb="50">
         <Hero />
 
-        <Box mt={{ base: 50, sm: 147 }}>
+        <Box maw={670} mt={{ base: 50, md: 147 }} mx="auto">
           <SearchBar />
         </Box>
       </Container>

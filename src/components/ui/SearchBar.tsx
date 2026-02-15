@@ -1,9 +1,9 @@
-import { Container, TextInput, Text } from '@mantine/core';
+import { TextInput, Text } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
 const SearchBar = () => {
   return (
-    <Container size="670" px="0">
+    <>
       <TextInput
         size="lg"
         radius="xl"
@@ -36,7 +36,7 @@ const SearchBar = () => {
         </Text>
         .Check the spelling or use a different word or phrase.
       </Text> */}
-    </Container>
+    </>
   );
 };
 

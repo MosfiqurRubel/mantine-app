@@ -4,28 +4,30 @@ import {
   Text,
   Title,
   useMantineColorScheme,
+  useMantineTheme,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 const Hero = () => {
   const { colorScheme } = useMantineColorScheme();
-  const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
+  const theme = useMantineTheme();
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.lg})`);
 
   return (
     <Stack
-      h={isMobile ? '58vh' : '100%'}
-      maw={isMobile ? '100%' : 560}
-      align={isMobile ? 'center' : 'flex-start'}
-      justify={isMobile ? 'flex-end' : ''}
-      gap={isMobile ? 30 : 'xl'}
+      h={isiPad ? '58vh' : '100%'}
+      maw={isiPad ? '100%' : 560}
+      align={isiPad ? 'center' : 'flex-start'}
+      justify={isiPad ? 'flex-end' : ''}
+      gap={isiPad ? 30 : 'xl'}
     >
       <Title
         tt="capitalize"
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}
-        ta={{ base: 'center', sm: 'left' }}
-        fz={{ base: 36, sm: 80 }}
+        ta={{ base: 'center', md: 'left' }}
+        fz={{ base: 36, md: 80 }}
         lh={1.2}
-        maw={{ base: 345, sm: 560 }}
+        maw={{ base: 345, md: 560 }}
       >
         Prescription treatments for your{' '}
         <Text
@@ -42,9 +44,9 @@ const Hero = () => {
       <Button
         variant="outline"
         radius="60"
-        size={isMobile ? 'md' : 'xl'}
-        h={{ base: 46, sm: 66 }}
-        px={{ base: 13, sm: 30 }}
+        size={isiPad ? 'md' : 'xl'}
+        h={{ base: 46, md: 66 }}
+        px={{ base: 13, md: 30 }}
         tt="capitalize"
         className="gradient-btn"
         styles={{
