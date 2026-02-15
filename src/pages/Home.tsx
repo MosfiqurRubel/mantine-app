@@ -1,23 +1,20 @@
 import { Box, Container } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
 import Hero from '@/components/home/Hero';
 import OnlineConvenient from '@/components/home/OnlineConvenient';
-import SearchSection from '@/components/ui/SearchSection';
+import SearchBar from '@/components/ui/SearchBar';
 import ShopByCategory from '@/components/home/ShopByCategory';
 import FeaturesBanner from '@/components/home/FeaturesBanner';
 import FeedbackSlider from '@/components/home/FeedbackSlider';
 import ProductsSection from '@/components/home/ProductsSection';
 
 const Home = () => {
-  const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
-
   return (
     <>
-      <Container size="1170" px={isMobile ? 'sm' : 0} pb="50">
+      <Container size="lg" pb="50">
         <Hero />
 
-        <Box mt={isMobile ? 50 : 147}>
-          <SearchSection />
+        <Box mt={{ base: 50, sm: 147 }}>
+          <SearchBar />
         </Box>
       </Container>
 

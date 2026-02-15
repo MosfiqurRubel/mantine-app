@@ -96,7 +96,7 @@ const ShopByCategory = () => {
         ta="center"
         fz={{ base: 28, sm: 48 }}
         lh={1.2}
-        mb={40}
+        mb={{ base: 30, sm: 46 }}
       >
         Shop By
         <Text

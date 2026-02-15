@@ -42,8 +42,9 @@ const Hero = () => {
       <Button
         variant="outline"
         radius="60"
-        size="xl"
-        px="30"
+        size={isMobile ? 'md' : 'xl'}
+        h={{ base: 46, sm: 66 }}
+        px={{ base: 13, sm: 30 }}
         tt="capitalize"
         className="gradient-btn"
         styles={{

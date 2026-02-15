@@ -14,8 +14,6 @@ type IconName =
   | 'arrowLeftBlack'
   | 'iconChatRight'
   | 'securePayment'
-  | 'plus'
-  | 'check'
   | 'quote'
   | 'starFull'
   | 'starEmpty'
@@ -271,8 +269,6 @@ const icons: Record<IconName, JSX.Element> = {
       </defs>
     </svg>
   ),
-  plus: <svg />,
-  check: <svg />,
   quote: (
     <svg
       width="22"

@@ -5,7 +5,6 @@ import {
   Button,
   Menu,
   ActionIcon,
-  Divider,
   Stack,
   Burger,
 } from '@mantine/core';
@@ -15,8 +14,8 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconShoppingCart,
-  IconSun,
-  IconMoon,
+  // IconSun,
+  // IconMoon,
 } from '@tabler/icons-react';
 import { Link, NavLink } from 'react-router-dom';
 const logo = new URL('/src/assets/logo.svg', import.meta.url).href;
@@ -24,22 +23,22 @@ const logo = new URL('/src/assets/logo.svg', import.meta.url).href;
 type HeaderProps = {
   mobileOpened: boolean;
   toggleMobile: () => void;
-  colorScheme: 'light' | 'dark';
-  toggleColorScheme: () => void;
+  // colorScheme: 'light' | 'dark';
+  // toggleColorScheme: () => void;
   shrink: boolean;
 };
 
 const Header = ({
   mobileOpened,
   toggleMobile,
-  colorScheme,
-  toggleColorScheme,
+  // colorScheme,
+  // toggleColorScheme,
   shrink,
 }: HeaderProps) => {
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
 
   return (
-    <Container size="1170" h="100%" px={isMobile ? 'sm' : 0}>
+    <Container size="lg" h="100%">
       <Group h="100%" justify="space-between">
         <Link to="/">
           <img
@@ -53,59 +52,61 @@ const Header = ({
         </Link>
 
         <Stack align={isMobile ? 'flex-start' : 'flex-end'} gap="24">
-          <Group visibleFrom="sm" gap={50}>
-            <Group gap={40}>
-              <Anchor component={NavLink} to="/" c="white">
-                Home
-              </Anchor>
+          {!isMobile && (
+            <Group gap={50}>
+              <Group gap={40}>
+                <Anchor component={NavLink} to="/" c="white">
+                  Home
+                </Anchor>
 
-              <Menu trigger="hover" withinPortal>
-                <Menu.Target>
-                  <Anchor c="white">
-                    Category <IconChevronDown size={14} />
-                  </Anchor>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item>Medicine</Menu.Item>
-                  <Menu.Item>Healthcare</Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
+                <Menu trigger="hover" withinPortal>
+                  <Menu.Target>
+                    <Anchor c="white">
+                      Category <IconChevronDown size={14} />
+                    </Anchor>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item>Medicine</Menu.Item>
+                    <Menu.Item>Healthcare</Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
 
-              <Menu trigger="hover" withinPortal>
-                <Menu.Target>
-                  <Anchor c="white">
-                    Top Products <IconChevronDown size={14} />
-                  </Anchor>
-                </Menu.Target>
-                <Menu.Dropdown>
-                  <Menu.Item>Featured</Menu.Item>
-                  <Menu.Item>Best Seller</Menu.Item>
-                </Menu.Dropdown>
-              </Menu>
+                <Menu trigger="hover" withinPortal>
+                  <Menu.Target>
+                    <Anchor c="white">
+                      Top Products <IconChevronDown size={14} />
+                    </Anchor>
+                  </Menu.Target>
+                  <Menu.Dropdown>
+                    <Menu.Item>Featured</Menu.Item>
+                    <Menu.Item>Best Seller</Menu.Item>
+                  </Menu.Dropdown>
+                </Menu>
 
-              <Anchor component={NavLink} to="/about" c="white">
-                About Us
-              </Anchor>
+                <Anchor component={NavLink} to="/about" c="white">
+                  About Us
+                </Anchor>
 
-              <Anchor component={NavLink} to="/contact" c="white">
-                Contact Us
-              </Anchor>
+                <Anchor component={NavLink} to="/contact" c="white">
+                  Contact Us
+                </Anchor>
 
-              <Anchor component={NavLink} to="/faq" c="white">
-                FAQs
-              </Anchor>
+                <Anchor component={NavLink} to="/faq" c="white">
+                  FAQs
+                </Anchor>
+              </Group>
+
+              <Group gap="16">
+                <ActionIcon variant="transparent" p="0" c="white">
+                  <IconBrandInstagram size={24} />
+                </ActionIcon>
+
+                <ActionIcon variant="transparent" p="0" color="white">
+                  <IconBrandFacebook size={24} />
+                </ActionIcon>
+              </Group>
             </Group>
-
-            <Group gap="16">
-              <ActionIcon variant="transparent" p="0" c="white">
-                <IconBrandInstagram size={24} />
-              </ActionIcon>
-
-              <ActionIcon variant="transparent" p="0" color="white">
-                <IconBrandFacebook size={24} />
-              </ActionIcon>
-            </Group>
-          </Group>
+          )}
 
           <Group gap={isMobile ? 10 : 30}>
             <Button
@@ -113,7 +114,7 @@ const Header = ({
               variant="gradient"
               radius="xl"
               size="sm"
-              px="16"
+              px="md"
               tt="capitalize"
               className="gradient-btn"
               styles={{
@@ -135,7 +136,7 @@ const Header = ({
               variant="outline"
               radius="xl"
               size="sm"
-              px="16"
+              px="md"
               tt="capitalize"
               className="gradient-btn border-none"
               styles={{
@@ -150,8 +151,14 @@ const Header = ({
               log in
             </Button>
 
-            <ActionIcon variant="subtle" color="white">
-              <IconShoppingCart size={28} />
+            <ActionIcon
+              variant="subtle"
+              color="white"
+              w="auto"
+              h="auto"
+              ms={{ base: 0, sm: -2 }}
+            >
+              <IconShoppingCart size={isMobile ? 28 : 34} />
             </ActionIcon>
 
             <Burger
@@ -159,9 +166,10 @@ const Header = ({
               onClick={toggleMobile}
               hiddenFrom="sm"
               color="white"
+              size={24}
             />
 
-            <ActionIcon
+            {/* <ActionIcon
               variant="outline"
               radius="xl"
               size="lg"
@@ -169,7 +177,7 @@ const Header = ({
               onClick={toggleColorScheme}
             >
               {colorScheme === 'dark' ? <IconSun /> : <IconMoon />}
-            </ActionIcon>
+            </ActionIcon> */}
           </Group>
         </Stack>
       </Group>
