@@ -4,7 +4,7 @@ import type { Category, Product } from '@/types';
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: '/API',
+    baseUrl: 'https://rizzpharma.thrivewellrx.com/API',
     prepareHeaders: (headers) => {
       headers.set('moduleid', '524');
       headers.set('tabid', '95');
