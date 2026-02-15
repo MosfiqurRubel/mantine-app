@@ -1,4 +1,4 @@
-# 🧩 Product Landing UI – React + Mantine v8
+# 🧩 Rizz Pharma – React + Mantine v8
 
 A fully responsive product landing UI built with **React**, **Vite**, and **Mantine UI v8**, featuring category-based navigation, carousel sliders, and real API integration.
 
