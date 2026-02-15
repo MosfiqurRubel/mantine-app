@@ -8,7 +8,7 @@ type SidebarProps = {
 const Sidebar = ({ collapsed }: SidebarProps) => {
   return (
     <Stack>
-      <Link to="/">Home</Link>
+      <Link to="/">Home {collapsed}</Link>
       <Link to="/about">About</Link>
     </Stack>
   );

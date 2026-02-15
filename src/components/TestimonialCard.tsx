@@ -1,8 +1,13 @@
 import { Avatar, Box, Card, Group, Rating, Stack, Text } from '@mantine/core';
 import { Icon } from '@/components/ui/Icon';
 import { useMediaQuery } from '@mantine/hooks';
+import type { TestimonialProps } from '@/components/home/FeedbackSlider';
 
-const TestimonialCard = ({ item }: { item: (typeof testimonials)[0] }) => {
+type Props = {
+  item: TestimonialProps;
+};
+
+const TestimonialCard = ({ item }: Props) => {
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
 
   return (

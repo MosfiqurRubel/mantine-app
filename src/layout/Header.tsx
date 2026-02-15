@@ -35,7 +35,7 @@ const Header = ({
   toggleMobile,
   // colorScheme,
   // toggleColorScheme,
-  shrink,
+  // shrink,
 }: HeaderProps) => {
   const theme = useMantineTheme();
   const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);

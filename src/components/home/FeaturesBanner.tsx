@@ -5,9 +5,11 @@ import {
   Text,
   useMantineColorScheme,
   Box,
+  useMantineTheme,
 } from '@mantine/core';
 import type { Feature } from '@/types';
 import { Icon } from '@/components/ui/Icon';
+import { useMediaQuery } from '@mantine/hooks';
 
 const features: Feature[] = [
   {
@@ -30,6 +32,8 @@ const features: Feature[] = [
 
 const FeaturesBanner = () => {
   const { colorScheme } = useMantineColorScheme();
+  const theme = useMantineTheme();
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
   return (
     <Box bg={colorScheme === 'dark' ? 'dark.7' : 'rgba(49, 65, 140, 0.3)'}>
@@ -39,7 +43,7 @@ const FeaturesBanner = () => {
           spacing={{ base: 40, md: 80 }}
         >
           {features.map((f) => (
-            <Group key={f.title} gap={{ base: 'md', sm: 'xl' }} align="center">
+            <Group key={f.title} gap={isiPad ? 'md' : 'xl'} align="center">
               {f.icon}
               <Text
                 fw={{ base: 400, sm: 600 }}

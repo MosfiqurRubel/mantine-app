@@ -2,16 +2,7 @@ import DOMPurify from 'dompurify'; // Recommended for safety
 import { Alert } from '@mantine/core';
 import { IconAlertTriangle } from '@tabler/icons-react';
 
-const ErrorState = ({ error }: { error?: unknown }) => {
-  let message = 'Something went wrong while fetching products.';
-
-  // if (error && typeof error === 'object') {
-  //   try {
-  //     message = JSON.stringify(error);
-  //   } catch {
-  //     message = String(error);
-  //   }
-  // }
+const ErrorState = ({ error }: { error?: any }) => {
   const sanitizedHTML = DOMPurify.sanitize(error?.data);
 
   return (

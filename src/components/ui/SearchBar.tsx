@@ -1,4 +1,4 @@
-import { TextInput, Text } from '@mantine/core';
+import { TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
 const SearchBar = () => {

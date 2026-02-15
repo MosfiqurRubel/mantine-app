@@ -55,6 +55,8 @@ const testimonials = [
   },
 ];
 
+export type TestimonialProps = (typeof testimonials)[number];
+
 const FeedbackSlider = () => {
   const { colorScheme } = useMantineColorScheme();
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px

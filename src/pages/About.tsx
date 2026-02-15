@@ -9,7 +9,7 @@ const About: FC<AboutProps> = ({ children }) => {
   return (
     <Container size="1202" px="md" py="xl">
       <Title order={1} mb="sm" tt="capitalize">
-        About us
+        About us {children}
       </Title>
 
       <Text c="dimmed" size="md">
