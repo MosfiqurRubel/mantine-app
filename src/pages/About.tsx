@@ -7,7 +7,7 @@ type AboutProps = {
 
 const About: FC<AboutProps> = ({ children }) => {
   return (
-    <Container size="lg" py="xl">
+    <Container size="1202" px="md" py="xl">
       <Title order={1} mb="sm" tt="capitalize">
         About us
       </Title>

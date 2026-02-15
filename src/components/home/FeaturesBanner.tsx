@@ -33,7 +33,7 @@ const FeaturesBanner = () => {
 
   return (
     <Box bg={colorScheme === 'dark' ? 'dark.7' : 'rgba(49, 65, 140, 0.3)'}>
-      <Container size="1170" px="md" py={{ base: 'xl', sm: 50 }}>
+      <Container size="1202" px="md" py={{ base: 'xl', sm: 50 }}>
         <SimpleGrid
           cols={{ base: 2, sm: 2, md: 4 }} // ✅ responsive breakpoints
           spacing={{ base: 40, md: 80 }}

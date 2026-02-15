@@ -88,7 +88,7 @@ const ShopByCategory = () => {
   }
 
   return (
-    <Container size="lg" pb={{ base: 50, sm: 120 }}>
+    <Container size="1202" px="md" pb={{ base: 50, sm: 120 }}>
       <Title
         order={2}
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}

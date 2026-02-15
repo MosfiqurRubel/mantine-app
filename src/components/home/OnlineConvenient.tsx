@@ -23,7 +23,7 @@ const OnlineConvenient: React.FC = () => {
       h={{ base: 273, sm: 812 }}
       py={{ base: 30, sm: 90 }}
     >
-      <Container size="lg">
+      <Container size="1202" px="md">
         <Grid align="center">
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Stack gap="md" ta="left">

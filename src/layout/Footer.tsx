@@ -35,7 +35,7 @@ const Footer = () => {
         overflow: 'hidden',
       }}
     >
-      <Container size="1170" style={{ position: 'relative' }}>
+      <Container size="1202" px="md" style={{ position: 'relative' }}>
         <Grid>
           <Grid.Col span={{ base: 12, md: 6 }}>
             <Box

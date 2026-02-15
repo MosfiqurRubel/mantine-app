@@ -8,6 +8,7 @@ import {
   Stack,
   Burger,
   useMantineTheme,
+  Image,
 } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import {
@@ -37,19 +38,24 @@ const Header = ({
   shrink,
 }: HeaderProps) => {
   const theme = useMantineTheme();
-  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.lg})`);
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
   return (
-    <Container size="lg" h="100%">
-      <Group h="100%" justify="space-between">
+    <Container size="1202" px="md" h="100%">
+      <Group
+        h="100%"
+        justify="space-between"
+        align="flex-start"
+        pt={48}
+        pb={10}
+      >
         <Link to="/">
-          <img
+          <Image
             src={logo}
-            alt="RIZZ Pharma"
-            style={{
-              maxWidth: 120,
-              transition: 'all 0.3s ease',
-            }}
+            alt="Rizz Pharma"
+            maw={120}
+            height="auto"
+            style={{ transitions: 'all 0.3s ease' }}
           />
         </Link>
 
@@ -57,13 +63,19 @@ const Header = ({
           {!isiPad && (
             <Group gap={50}>
               <Group gap={40}>
-                <Anchor component={NavLink} to="/" c="white">
+                <Anchor
+                  component={NavLink}
+                  to="/"
+                  c="white"
+                  td="none"
+                  className="link"
+                >
                   Home
                 </Anchor>
 
                 <Menu trigger="hover" withinPortal>
                   <Menu.Target>
-                    <Anchor c="white">
+                    <Anchor c="white" td="none" className="link">
                       Category <IconChevronDown size={14} />
                     </Anchor>
                   </Menu.Target>
@@ -75,7 +87,7 @@ const Header = ({
 
                 <Menu trigger="hover" withinPortal>
                   <Menu.Target>
-                    <Anchor c="white">
+                    <Anchor c="white" td="none" className="link">
                       Top Products <IconChevronDown size={14} />
                     </Anchor>
                   </Menu.Target>
@@ -85,25 +97,53 @@ const Header = ({
                   </Menu.Dropdown>
                 </Menu>
 
-                <Anchor component={NavLink} to="/about" c="white">
+                <Anchor
+                  component={NavLink}
+                  to="/about"
+                  c="white"
+                  td="none"
+                  className="link"
+                >
                   About Us
                 </Anchor>
 
-                <Anchor component={NavLink} to="/contact" c="white">
+                <Anchor
+                  component={NavLink}
+                  to="/contact"
+                  c="white"
+                  td="none"
+                  className="link"
+                >
                   Contact Us
                 </Anchor>
 
-                <Anchor component={NavLink} to="/faq" c="white">
+                <Anchor
+                  component={NavLink}
+                  to="/faq"
+                  c="white"
+                  td="none"
+                  className="link"
+                >
                   FAQs
                 </Anchor>
               </Group>
 
               <Group gap="16">
-                <ActionIcon variant="transparent" p="0" c="white">
+                <ActionIcon
+                  variant="transparent"
+                  p="0"
+                  c="white"
+                  className="link"
+                >
                   <IconBrandInstagram size={24} />
                 </ActionIcon>
 
-                <ActionIcon variant="transparent" p="0" color="white">
+                <ActionIcon
+                  variant="transparent"
+                  p="0"
+                  color="white"
+                  className="link"
+                >
                   <IconBrandFacebook size={24} />
                 </ActionIcon>
               </Group>

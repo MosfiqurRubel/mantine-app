@@ -59,7 +59,7 @@ const FeedbackSlider = () => {
   const { colorScheme } = useMantineColorScheme();
   const isMobile = useMediaQuery('(max-width: 48em)'); // < 768px
   return (
-    <Container size="lg" px={isMobile ? 'sm' : 0} py={{ base: 50, sm: 160 }}>
+    <Container size="1202" px="md" py={{ base: 50, sm: 160 }}>
       <Title
         order={2}
         c={`${colorScheme === 'dark' ? 'var(--text-color)' : 'white'} `}

@@ -11,7 +11,7 @@ import { useMediaQuery } from '@mantine/hooks';
 const Hero = () => {
   const { colorScheme } = useMantineColorScheme();
   const theme = useMantineTheme();
-  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.lg})`);
+  const isiPad = useMediaQuery(`(max-width: ${theme.breakpoints.md})`);
 
   return (
     <Stack

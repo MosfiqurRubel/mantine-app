@@ -8,7 +8,7 @@ type DefaultPageProps = {
 
 const DefaultPage: FC<DefaultPageProps> = ({ title, description }) => {
   return (
-    <Container size="lg" py="xl">
+    <Container size="1202" px="md" py="xl">
       <Title order={1} mb="sm">
         {title}
       </Title>

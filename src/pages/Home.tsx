@@ -10,7 +10,7 @@ import ProductsSection from '@/components/home/ProductsSection';
 const Home = () => {
   return (
     <>
-      <Container size="lg" pb="50">
+      <Container size="1202" px="md" pb="50">
         <Hero />
 
         <Box maw={670} mt={{ base: 50, md: 147 }} mx="auto">

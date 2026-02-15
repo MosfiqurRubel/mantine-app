@@ -12,7 +12,6 @@ type AppLayoutProps = {
 
 const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const [scroll] = useWindowScroll();
 
   const isScrolled = scroll.y > 20;
@@ -23,7 +22,7 @@ const AppLayout: FC<AppLayoutProps> = ({ children }) => {
       transitionDuration={500}
       transitionTimingFunction="ease"
       px="0"
-      header={{ height: isShrink ? 139 : 179 }}
+      header={{ height: isShrink ? 179 : 139 }}
       aside={{
         width: 260,
         breakpoint: 'sm',
@@ -39,16 +38,14 @@ const AppLayout: FC<AppLayoutProps> = ({ children }) => {
           top: 0,
           zIndex: 1000,
           transition: 'all 0.3s ease',
-          background: isScrolled ? 'var(--mantine-color-body)' : 'transparent',
-          boxShadow: isScrolled ? '0 4px 20px rgba(0,0,0,0.06)' : 'none',
-          backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+          background: isScrolled ? 'rgba(26,41,72,0.7)' : 'transparent',
+          boxShadow: isScrolled ? '0 0 12px 1px rgba(29,37,73,0.8)' : 'none',
+          backdropFilter: isScrolled ? 'blur(50px)' : 'none',
         }}
       >
         <Header
           mobileOpened={mobileOpened}
           toggleMobile={toggleMobile}
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
           shrink={isShrink}
         />
       </AppShell.Header>
